@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @fruit.type %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @fruit.price %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @fruit.description %>
+</p>
+
+<p>
+  <strong>Display url:</strong>
+  <%= @fruit.display_url %>
+</p>
+
+<%= link_to 'Edit', edit_fruit_path(@fruit) %> |
+<%= link_to 'Back', fruits_path %>
