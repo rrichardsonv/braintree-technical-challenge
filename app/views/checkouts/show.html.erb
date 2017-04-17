@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-3">
+      <h1 class='main-title'>Fruit Store</h1>
+  </div>
+  <div class="home-link col-md-3 col-md-offset-6">
+    <%=link_to 'Home', root_path, class: 'main-title'  %>
+  </div>
+</div>
+<div class="result-wrapper">
+  <div class="response container">
+    <div class="content">
+      <% if @result %>
+        <div class="icon">
+          <img src=<%= asset_path("#{@result[:icon]}.png") %> alt="">
+        </div>
+
+        <h1><%= @result[:header] %></h1>
+        <section>
+          <p><%= @result[:message] %></p>
+        </section>
+      <% else %>
+        <section>
+          <p>Test another transaction or see the Braintree API response.</p>
+      </section>
+
+      <% end %>
+    </div>
+  </div>
+  <%if @result[:reciept] %>
+    <div class="reciept">
+      <h3>Reciept</h3>
+      <%@result[:reciept].each do |line| %>
+        <p><%= line  %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <br><br>
+  <section>
+    <a class="button primary back" href="<%=@product.product_path%>/checkouts/new">
+      <span>Test Another Transaction</span>
+    </a>
+  </section>
+</div>

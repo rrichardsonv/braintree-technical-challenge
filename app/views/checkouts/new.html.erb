@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-3">
-      <h1><%= @product.name.capitalize  %></h1>
+      <h1 class='main-title'><%= @product.name.capitalize  %></h1>
   </div>
   <div class="home-link col-md-3 col-md-offset-6">
-    <%=link_to 'Home', root_path  %>
+    <%=link_to 'Home', root_path, class: 'main-title'  %>
   </div>
 </div>
 <div class="row">

@@ -50,6 +50,9 @@ h1, h2, h3, h4, .home-link{
   font-size: 21px;
   padding-top: 15px;
 }
+.main-title{
+  color: #fffee9;
+}
 /*  A.  HTML element styles */
 /*    1.  Block Level  */
 
@@ -72,15 +75,6 @@ h1, h2, h3, h4, .home-link{
 }
 .mg-t-1m{
   margin-top:1em;
-}
-
-.iCon{
-  color: #161417;
-  background-color: #1e1e20;
-  font-kerning: normal;
-  padding-top: 9em;
-  margin-top: -7em;
-  transform: rotate(2deg);
 }
 
 .header-row{
@@ -168,45 +162,7 @@ a.l-rect {
   height: 3em;
   width: 3em;
 }
-.footer-bar{
-  color: #161417;
-  background-color: #1e1e20;
-  width: 100%;
-  padding-left: 14em;
-  padding-right: 14em;
-  margin-left: -2em;
-  margin-right: -9em;
-}
 
-.rotate-foot{
-  transform: rotate(2deg);
-  z-index: 12;
-  position: absolute;
-}
-
-.footer-bar a.btn i,span{
-  color: white;
-}
-
-.footer-bar a.btn i:hover,span:hover{
-  color: grey;
-  transform: rotate(5deg);
-}
-
-
-
-.next-event{
-  background-image: url(public/img/inkblot.png);
-  opacity: 0.95;
-  margin-top:10em;
-  background-color: transparent;
-  background-size: cover;
-  background-position: center;
-}
-
-.carousel .next-event{
-  width: 60%;
-}
 .card-menu{
   padding-top: 1em;
   padding-bottom: 1em;
@@ -289,31 +245,6 @@ a.l-rect {
 
 .mg-t-1{
   margin-top: 1em;
-}
-
-.next-event-title{
-  text-align: center;
-}
-
-.fl-r{
-  float: right;
-}
-
-.nav-btn{
-  opacity: 0.9;
-}
-
-.nav-btn-group{
-  margin-top: -1em;
-}
-
-.event-card-bg{
-  display:inline;
-  width: 100%;
-  height: auto;
-  max-width:100%;
-  vertical-align: middle;
-  border: 0;
 }
 
 .inner-wrapper{
@@ -473,9 +404,7 @@ a.l-rect {
 .bottom-details:hover{
   opacity: 0.9;
 }
-.smash-form{
-  border: 6px solid #e3e3e3;
-}
+
 .card-img{
   height: 250px;
   width: 300px;
@@ -610,28 +539,6 @@ a.txt-l-cream{
 .txt-xd-blue { 
   color: #071943*;
 }
-.dot-gg-icon{
-  font: 500 4.6rem "Teko",sans-serif;
-  height: 100%;
-  text-decoration: none;
-  width: 100%;
-}
-.txt-iCon, .btn-iCon{
-  color: inherit;
-  font-family:inherit;
-  letter-spacing: inherit;
-  font-size: inherit;
-  font-weight: bolder;
-  background:transparent;
-  border-radius: 0px;
-  font-weight: 100;
-  line-height: 0.5;
-
-}
-.btn-iCon{
-  padding-bottom: 1em;
-  padding-top: 1em;
-}
 
 .header-link:hover{
   background-color: #1e1e20;
@@ -641,16 +548,6 @@ a.txt-l-cream{
   border-top: 2px solid white;
 }
 
-.navbar-inverse, .navbar-brand{
-  font-weight: bolder;
-  color: #1e1e20;
-  font-family: Arial, sans-serif;
-  letter-spacing: -1px;
-}
-
-.navbar-inverse{
-  font-size: 2.5em;
-}
 
 .txt-black{
   color: #1e1e20;
@@ -690,7 +587,6 @@ a.txt-l-cream{
   z-index: 1;
   position: relative;
   overflow: hidden;
-  background-color: rgba(255,255,255,.9);
   transform: translate3d(0,0,0);
   transition: background-color 131ms linear;
 }
@@ -733,7 +629,10 @@ button.paypal{
 
 .form-align{
   margin-left: 0px;
-  padding-left: 0px
+  padding-left: 0px;
+  background-color: rgba(255,255,255,.9);
+  opacity: 0.8;
+  border-radius: 5px;
 }
 .paypal-section-wrap{
   background: white;
@@ -746,4 +645,27 @@ button.paypal{
   .purchase-form-wrapper{
     margin-top: 10em;
   }
+}
+
+.result-wrapper{
+  margin: 0 auto;
+  margin-top: 2%;
+  width: 50%;
+  padding-left: 12%;
+  padding-right: 12%;
+  padding-bottom: 5%;
+  background: white;
+  border-radius: 13px;
+  opacity: 0.9;
+}
+
+.response{
+  background: transparent;
+  opacity: 1;
+}
+
+.reciept{
+  border-radius: 10px;
+  border: 2px dashed #0f58f7;
+  padding-left: 5px;
 }

@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1 id='brand-title'>The Fruit Store</h1>
+<h1 id='brand-title' class='main-title'>The Fruit Store</h1>
 <div class='container'>
   <% @fruits.each do |fruit| %>
     <%= render(:partial => 'card', :locals => { :fruit => fruit }) %>

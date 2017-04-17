@@ -1,10 +1,15 @@
+var roundToNearestCent = function(num){
+  return Math.round( num * 100 + Number.EPSILON ) / 100
+}
+
 var startAmountListener = function(){
   const price = parseFloat($('#total')[0].innerText)
   $('#payment-section').change('input#amount', function(e){
     var total = parseInt(e.target.value) * price;
-    $('h3#total')[0].innerHTML = total
+    $('h3#total')[0].innerHTML = roundToNearestCent(total)
   })
 };
+
 
 var getBrainTreeForm = function (client_token) {
     var checkout = new DropIn({
