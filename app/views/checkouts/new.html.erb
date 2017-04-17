@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-3">
+      <h1><%= @product.name.capitalize  %></h1>
+  </div>
+  <div class="home-link col-md-3 col-md-offset-6">
+    <%=link_to 'Home', root_path  %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-5">
+    <div class="product-details-wrapper" >
+      <%= image_tag(@product.display_url, class: 'show-img') %>
+      <div class="description-wrapper">
+        <p><%= @product.description  %></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 purchase-form-wrapper">
+        <%= render(:partial => 'form', :locals => { :product => @product }) %>
+  </div>
+<div>

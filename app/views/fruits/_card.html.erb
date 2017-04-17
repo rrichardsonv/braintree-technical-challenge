@@ -1,0 +1,19 @@
+<div class='item item-responsive'>
+  <div class='top-details profile-wrapper'>
+    <h3><%= fruit.name  %></h3>
+    <strong>
+      <p></p>
+    </strong>
+  </div>
+  <div class='inner-wrapper'>
+    <%= image_tag(fruit.display_url, class: 'card-img') %>
+  </div>
+  <div class='container-fluid responsive-blurb bottom-details profile-wrapper'>
+    <div class='row'>
+      <div class='col-sm-3 col-xs-3 main-character-icon'>
+        <h3>$<%= fruit.price_per_lb  %>/lb</h3>
+        <%= link_to('Purchase', new_fruit_checkout_path(fruit), class: "btn btn-sm btn-info", data: { no_turbolink: true }) %>
+      </div>
+    </div>
+  </div>
+</div>

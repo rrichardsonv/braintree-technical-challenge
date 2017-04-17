@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  resources :fruits
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'fruits#index'
+  resources :fruits, product: 'Fruit', only: :index do
+    resources :checkouts,  only: [:new, :create, :show]
+  end
 end

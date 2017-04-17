@@ -24,7 +24,7 @@ SEEDED_FRUITS = [{
     :display_url => "oran.jpg",
   }, {
     :name => "pineapple",
-    :price_per_lb => 2.60,
+    :price_per_lb => 2.61,
     :description => "Pineapples are an excellent artifact of previous language. The -apple in their name used to simply mean fruit. Fruit took its place due to the influence of French however apple and pineapple still retain the old name.",
     :display_url => "pine.jpg",
   }, {

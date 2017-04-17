@@ -10,6 +10,7 @@ class CheckoutsController < ApplicationController
   ]
 
   def new
+    @product = get_purchase_product
     @client_token = Braintree::ClientToken.generate
   end
 
@@ -45,15 +46,23 @@ class CheckoutsController < ApplicationController
     if TRANSACTION_SUCCESS_STATUSES.include? status
       result_hash = {
         :header => "Sweet Success!",
-        :icon => "success",
-        :message => "Your test transaction has been successfully processed. See the Braintree API response and try again."
+        :icon => "success grape",
+        :message => "Grape job! Your good to go!"
       }
     else
       result_hash = {
         :header => "Transaction Failed",
-        :icon => "fail",
-        :message => "Your test transaction has a status of #{status}. See the Braintree API response and try again."
+        :icon => "fail pear",
+        :message => "It ap-PEAR-s something went wrong"
       }
     end
+  end
+
+  private
+
+  def get_purchase_product
+    model = params[:product].constantize
+    product_key = params[:product].foreign_key
+    model.find_by(id: params[product_key])
   end
 end

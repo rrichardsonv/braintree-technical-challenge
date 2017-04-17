@@ -1,0 +1,32 @@
+<div id='payment-section' class='container-fluid'>
+  <%= form_tag(fruit_checkouts_path, id: "braintree-payment-form") do %>
+    <section class='paypal-section-wrap'>
+      <div class="bt-drop-in-wrapper">
+        <div id="bt-dropin">
+        </div>
+      </div>
+    </section>
+    <div class="row">
+      <div class="col-md-6 form-align">
+        <label class="ammount-label" for="amount">
+          <span class="ammount-field-name">Amount(lbs)</span>
+          <div class="input-wrapper amount-wrapper">
+            <input class="ammount-field" id="amount" name="amount" type="tel" min="1" value="1">
+          </div>
+        </label>
+      </div>
+      <div class="col-md-6">
+        <div class=total-box>
+          <label>Total cost</label>
+          <div class="total-wrapper">
+            <h3 class="total-cost" id="total"><%= product.price_per_lb  %></h3>
+          </div>
+        </div> 
+      </div>
+    </div>
+    <button id='BT-btn' class="btn btn-info" type="submit"><span>Submit</span></button>
+  <% end %>
+  <script type="text/javascript">
+    checkoutsWillEnter({client_token: "<%=@client_token %>"})
+  </script>
+</div>
