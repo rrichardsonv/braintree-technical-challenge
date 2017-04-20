@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row header-row">
   <div class="col-md-3">
       <h1 class='main-title'><%= @product.name.capitalize  %></h1>
   </div>
@@ -6,8 +6,8 @@
     <%=link_to 'Home', root_path, class: 'main-title'  %>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-5">
+<div class="row checkout-content">
+  <div class="col-md-5 fruit-card">
     <div class="product-details-wrapper" >
       <%= image_tag(@product.display_url, class: 'show-img') %>
       <div class="description-wrapper">
@@ -16,6 +16,6 @@
     </div>
   </div>
   <div class="col-md-6 purchase-form-wrapper">
-        <%= render(:partial => 'form', :locals => { :product => @product }) %>
+        <%= render(:partial => 'form', :locals => { :product => @product, :fields => @fields }) %>
   </div>
 <div>

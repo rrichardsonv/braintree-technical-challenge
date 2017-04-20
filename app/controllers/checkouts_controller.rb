@@ -1,4 +1,6 @@
 class CheckoutsController < ApplicationController
+  include CheckoutsHelper
+
   TRANSACTION_SUCCESS_STATUSES = [
     Braintree::Transaction::Status::Authorizing,
     Braintree::Transaction::Status::Authorized,
@@ -10,6 +12,7 @@ class CheckoutsController < ApplicationController
   ]
 
   def new
+    @fields = CheckoutsHelper.bt_form_fields
     @product = get_purchase_product
     @client_token = Braintree::ClientToken.generate
   end
@@ -22,8 +25,8 @@ class CheckoutsController < ApplicationController
 
   def create
     product = get_purchase_product
-    amount = params["amount"].to_i
-    nonce = params["payment_method_nonce"]
+    amount = params[:checkout][:amount].to_i
+    nonce = params[:payment_method_nonce]
     purchase_amount = '%.2f' % (amount * product.price_per_lb)
 
     result = Braintree::Transaction.sale(
@@ -65,10 +68,13 @@ class CheckoutsController < ApplicationController
     reciept = [
       "TransactionID: #{transaction.id}",
       "Date: #{transaction.created_at}",
-      "Amount: $#{transaction.amount}",
-      "Payment Method: #{t.card_type} ending in #{t.last_4}"
+      "Amount: $#{show_amount_cents(transaction.amount)}"
     ]
-
+      
+    if t.card_type != nil
+      reciept.push("Payment Method: #{t.card_type} ending in #{t.last_4}")
+    end
+    
     if TRANSACTION_SUCCESS_STATUSES.include? status
       result_hash = {
         :header => "Sweet Success!",

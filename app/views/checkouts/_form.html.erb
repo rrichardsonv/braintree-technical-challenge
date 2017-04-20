@@ -1,32 +1,95 @@
 <div id='payment-section' class='container-fluid'>
-  <%= form_tag(fruit_checkouts_path, id: "braintree-payment-form") do %>
-    <section class='paypal-section-wrap'>
-      <div class="bt-drop-in-wrapper">
-        <div id="bt-dropin">
+  <div class="row">
+    <div class="col-md-6 form">
+      <label class="ammount-label" for="amount">
+        <span class="ammount-field-name">Amount(lbs)</span>
+        <div class="input-wrapper amount-wrapper">
+          <input
+            id="amount"
+            class="ammount-field"
+            name="amount"
+            type="tel"
+            min="1"
+            value="1"
+          >
         </div>
-      </div>
-    </section>
-    <div class="row">
-      <div class="col-md-6 form-align">
-        <label class="ammount-label" for="amount">
-          <span class="ammount-field-name">Amount(lbs)</span>
-          <div class="input-wrapper amount-wrapper">
-            <input class="ammount-field" id="amount" name="amount" type="tel" min="1" value="1">
+      </label>
+    </div>
+    <div class="col-md-2">
+      <button class='update-btn btn btn-default'> = </button>
+    </div>
+    <div class="col-md-3 form">
+        <label class="ammount-label" >
+          <span class="ammount-field-name">Total cost(USD)</span>
+          <div class="total-wrapper">
+            <span class="total-cost total-field" id="total"><%= product.price_per_lb  %></span>
           </div>
         </label>
-      </div>
-      <div class="col-md-6">
-        <div class=total-box>
-          <label>Total cost</label>
-          <div class="total-wrapper">
-            <h3 class="total-cost" id="total"><%= product.price_per_lb  %></h3>
-          </div>
-        </div> 
-      </div>
+      </div> 
     </div>
-    <button id='BT-btn' class="btn btn-info" type="submit"><span>Submit</span></button>
+  </div>
+  <%= render partial: 'notification' %>
+  <%= form_tag(fruit_checkouts_path, id: "braintree-payment-form") do %>
+    <section class='paypal-section-wrap'>
+      <input
+        id='checkout-amount'
+        type='hidden'
+        name='checkout[amount]'
+        value='1'
+      >
+      <div class="row form form-align">
+        <div class="column">  
+          <div
+            id="paypal-container"
+            class="centered-btn"
+          >
+          </div>
+        </div>
+      </div>
+      <div id='cc-inputs'>
+      <% fields.each do |f| %>
+        <div class="row form form-align">
+          <div class="column">
+            <label
+              class="<%=f[:name]%>-label form-label"
+              for="<%=f[:name]%>"
+            >
+              <span class="field-name">
+                <%=f[:display]%>
+              </span>
+              <div
+                class="input-wrapper <%=f[:name]%>-wrapper">
+                <div
+                  id="<%=f[:name]%>"
+                  class="BT-input"
+                  name="checkout[<%=f[:name]%>]"
+                >
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    </section>
+    <div class='row'>
+      <div class='col-sm-6 col-sm-offset-3'>
+        <button
+          id='BT-btn'
+          class="btn btn-block btn-info"
+          type="submit"
+        >
+          <span>Submit</span>
+        </button>
+      <div>
+    </div>
   <% end %>
   <script type="text/javascript">
-    checkoutsWillEnter({client_token: "<%=@client_token %>"})
+    checkoutsWillEnter({
+      client_token: "<%=@client_token %>",
+      btOptions: <%= CheckoutsHelper.bt_form_fields({
+        'hostedFields': true
+      })%>
+    })
   </script>
 </div>

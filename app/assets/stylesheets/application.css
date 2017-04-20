@@ -78,9 +78,9 @@ h1, h2, h3, h4, .home-link{
 }
 
 .header-row{
-  background-color:#8f0111;
-  margin-bottom: 5px;
+  background: linear-gradient(#133fa8, #87acfb, transparent);
 }
+
 .pd-t-2m{
   padding-top:2em;
 }
@@ -221,6 +221,9 @@ a.l-rect {
 }
 
 @media only screen and (min-width: 768px) {
+    .fruit-card{
+      padding-top: 5%;
+    }
 
     .main-content {
         padding-top: 8em;
@@ -296,53 +299,6 @@ a.l-rect {
   opacity: 0.9;
 }
 
-.rules-column {
-  background-color: white;
-  opacity: 0.8;
-  border-radius: 15px;
-  margin-right: 5px;
-  margin-bottom:5px;
-}
-
-.rules-column h4{
-    color: #f26539;
-    display: inline-block;
-    margin: 1em;
-    opacity: 1;
-}
-.rules-column p{
-    color: #828c91;
-    display: inline-block;
-    padding-right: 1.5em;
-    opacity: 1;
-}
-
-.rules-column img{
-  padding-bottom: 1em;
-  opacity: 1;
-}
-.middle-xs{
-  -ms-flex-align: center;
-  -ms-grid-row-align: center;
-  align-items: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-}
-
-.rules-filter-bar{
-  border-bottom: 1px solid #a94442;
-  align-content: center;
-}
-
-.rules-filter-bar .btn-toolbar{
-  margin: 1em 1em 1em auto;
-  padding-left: 25%;
-}
-
-.rule-filter{
-  text-transform: capitalize;
-}
-
 .t-5{
   padding-top: 5px;
 }
@@ -398,7 +354,6 @@ a.l-rect {
 }
 .row{
   padding-bottom: 10px;
-  padding-left: 15px;
 }
 
 .bottom-details:hover{
@@ -561,7 +516,7 @@ a.txt-l-cream{
 .nav-btn-group{
   margin-top: -2em;
 }
-.ammount-field{
+.ammount-field, .total-field{
   display: block;
   font-weight: 200;
   font-size: 16px;
@@ -570,7 +525,7 @@ a.txt-l-cream{
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   margin: 16px 0 0;
-  padding: 0 14px;
+  padding: 3px 14px;
   width: 100%;
   outline: 0;
   border: none;
@@ -627,23 +582,9 @@ button.paypal{
   margin-left: 15px;
 }
 
-.form-align{
-  margin-left: 0px;
-  padding-left: 0px;
-  background-color: rgba(255,255,255,.9);
-  opacity: 0.8;
-  border-radius: 5px;
-}
-.paypal-section-wrap{
-  background: white;
-  opacity: 0.8;
-  padding-top: 15px;
-  border-radius: 5px;
-}
-
 @media only screen and (min-device-width: 375px){
   .purchase-form-wrapper{
-    margin-top: 10em;
+    margin-top: 5em;
   }
 }
 
@@ -668,4 +609,16 @@ button.paypal{
   border-radius: 10px;
   border: 2px dashed #0f58f7;
   padding-left: 5px;
+}
+
+#BT-btn{
+  margin: 0 auto;
+}
+.checkout-content{
+  padding-left: 5%;
+  padding-right: 5%;
+  margin: 0 auto;
+}
+.update-btn{
+  margin: 25%;
 }
