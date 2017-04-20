@@ -68,8 +68,7 @@ var formatOptions = function(serverOptions, formId){
 };
 //add errorhandler function to braintree options
 var addErrorHandler = function(options){
-  const errorHand
-  ler = function(error){
+  const errorHandler = function(error){
     var notice = ["<span class='error'>", error.message, "</span>"].join('')
     $('#notice-wrapper').append(notice)
     window.setTimeout(function(){

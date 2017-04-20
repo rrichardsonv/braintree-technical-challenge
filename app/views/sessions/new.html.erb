@@ -1,0 +1,17 @@
+<div id='new-sessions-form-wrapper'>
+  <h3 class='errors'><%= flash[:alert]  %><h3>
+  <%= form_tag(sessions_path, id: "new-sessions-form") do %>
+    <%= render partial: 'customers/form', locals: {form_name: "session" %>
+    <div class='row'>
+      <div class='col-sm-6 col-sm-offset-3'>
+        <button
+          id='BT-btn'
+          class="btn btn-block btn-info"
+          type="submit"
+        >
+          <span>Login</span>
+        </button>
+      <div>
+    </div>
+  <% end %>
+</div>

@@ -27,6 +27,8 @@ gem 'braintree', '~> 2.47'
 
 gem 'dotenv', '~> 2.0'
 
+gem 'bcrypt'
+
 
 group :development, :test do
   gem 'byebug', platform: :mri
