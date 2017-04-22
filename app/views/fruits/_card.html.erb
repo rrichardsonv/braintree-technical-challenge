@@ -12,7 +12,11 @@
     <div class='row'>
       <div class='col-sm-3 col-xs-3 main-character-icon'>
         <h3>$<%= fruit.price_per_lb  %>/lb</h3>
-        <%= link_to('Purchase', new_fruit_checkout_path(fruit), class: "btn btn-sm btn-info", data: { no_turbolink: true }) %>
+        <% if logged_in  %>
+          <%= link_to('Purchase', new_fruit_checkout_path(fruit), class: "btn btn-sm btn-info", data: { no_turbolink: true }) %>
+        <% else %>
+          <%= link_to('Purchase', new_session_path(:type=>'fruits', :item_id => fruit.id), class: "btn btn-sm btn-info", data: { no_turbolink: true }) %>
+        <% end %>
       </div>
     </div>
   </div>

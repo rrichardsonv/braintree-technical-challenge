@@ -1,9 +1,10 @@
-<div id='new-sessions-form-wrapper'>
+<div id='new-sessions-form-wrapper' class='result-wrapper'>
+  <div class='container-fluid'>
   <h3 class='errors'><%= flash[:alert]  %><h3>
   <%= form_tag(sessions_path, id: "new-sessions-form") do %>
-    <%= render partial: 'customers/form', locals: {form_name: "session" %>
+    <%= render partial: 'customers/form', locals: {form_name: "session"} %>
     <div class='row'>
-      <div class='col-sm-6 col-sm-offset-3'>
+      <div class='col-sm-4'>
         <button
           id='BT-btn'
           class="btn btn-block btn-info"
@@ -11,7 +12,14 @@
         >
           <span>Login</span>
         </button>
-      <div>
+      </div>
+      <div class='col-sm-2 col-sm-offset-1'>
+        <span>-or-</span>
+      </div>
+      <div class='col-sm-4 col-sm-offset-1'>
+        <%= link_to('Register', new_customer_path, class: "btn btn-block btn-info", data: { no_turbolink: true }) %>
+      </div>
     </div>
   <% end %>
+  </div>
 </div>

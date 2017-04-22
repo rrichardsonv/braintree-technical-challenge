@@ -138,10 +138,6 @@ a.button {
   margin-right:10px;
 }
 
-a.btn{
-  text-transform: uppercase;
-}
-
 a.l-rect {
   position: absolute;
   /*z-index: -1;*/

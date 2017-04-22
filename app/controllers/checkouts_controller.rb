@@ -1,5 +1,5 @@
 class CheckoutsController < ApplicationController
-  include CheckoutsHelper
+  include CheckoutsHelper, SessionsHelper
 
   TRANSACTION_SUCCESS_STATUSES = [
     Braintree::Transaction::Status::Authorizing,
@@ -12,35 +12,52 @@ class CheckoutsController < ApplicationController
   ]
 
   def new
+    customer = current_customer
+    if !!customer.cards
+      @card = customer.cards.last
+    end
     @fields = CheckoutsHelper.bt_form_fields
-    @product = get_purchase_product
+    @product = _get_purchase_product
     @client_token = Braintree::ClientToken.generate
   end
 
   def show
-    @product = get_purchase_product
+    @product = _get_purchase_product
     @transaction = Braintree::Transaction.find(params[:id])
     @result = _create_result_hash(@transaction)
   end
 
   def create
-    product = get_purchase_product
-    amount = params[:checkout][:amount].to_i
+    customer = current_customer
+    checkout = params[:checkout]
+    product = _get_purchase_product
+    amount = checkout[:amount].to_i
     nonce = params[:payment_method_nonce]
+    save = checkout[:save] === 'on'
     purchase_amount = '%.2f' % (amount * product.price_per_lb)
 
     result = Braintree::Transaction.sale(
       amount: purchase_amount,
       payment_method_nonce: nonce,
+      :customer_id => customer.bt_id,
       :options => {
-        :submit_for_settlement => true
+        :submit_for_settlement => true,
+        :store_in_vault_on_success => save
       }
     )
-
-    checkout_redirect(result, product)
+    if save && ( result.success? || result.transaction )
+      card = result.transaction.credit_card_details
+      customer.cards.new({token: card.token, last_4: card.last_4})
+      if customer.save
+        flash[:error] = 'Save unsuccessful.'
+      else
+        flash[:notice] = 'Card save successful.'
+      end
+    end 
+    _checkout_redirect(result, product)
   end
 
-  def checkout_redirect(result, product)
+  def _checkout_redirect(result, product)
     if result.success? || result.transaction
       case product.model_name.name
       when 'Fruit'
@@ -61,7 +78,6 @@ class CheckoutsController < ApplicationController
       end
     end
   end
-
   def _create_result_hash(transaction)
     t = transaction.credit_card_details
     status = transaction.status
@@ -90,9 +106,8 @@ class CheckoutsController < ApplicationController
       }
     end
   end
-
-  private
-  def get_purchase_product
+  
+  def _get_purchase_product
     model = params["product"].constantize
     product_key = params["product"].foreign_key
     model.find_by(id: params[product_key])

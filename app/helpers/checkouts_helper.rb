@@ -1,4 +1,9 @@
 module CheckoutsHelper
+  def checkout_cart
+    cart = session[:cart]
+    cart_path = "/#{session[:cart]["type"]}/#{session[:cart]["item_id"]}/checkouts/new"
+  end
+  
   def show_amount_cents(cost)
     str_cost = cost.to_s
     if !!(/^\d*$/ =~ str_cost) #nil on no cents

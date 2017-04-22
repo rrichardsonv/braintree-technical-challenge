@@ -2,6 +2,27 @@
   <div class='container-fluid'>
     <h3 class='errors'><%= flash[:alert]  %><h3>
   <%= form_tag(customers_path, id: "new-customer-form") do %>
+    <div class="row form form-align">
+      <div class="column">
+        <label
+          class="name-label form-label"
+          for="name"
+        >
+          <span class="field-name">
+            name
+          </span>
+          <div
+            class="input-wrapper name-wrapper">
+            <input
+              type="text"
+              id="name-field"
+              class="BT-input"
+              name="customer[username]"
+            >
+          </div>
+        </label>
+      </div>
+    </div>
     <%= render partial: 'form', locals: {form_name: "customer"} %>
     <div class='row'>
       <div class='col-sm-6 col-sm-offset-3'>

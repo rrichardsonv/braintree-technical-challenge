@@ -1,21 +1,23 @@
-<div class="row header-row">
-  <div class="col-md-3">
-      <h1 class='main-title'><%= @product.name.capitalize  %></h1>
-  </div>
-  <div class="home-link col-md-3 col-md-offset-6">
-    <%=link_to 'Home', root_path, class: 'main-title'  %>
-  </div>
-</div>
-<div class="row checkout-content">
-  <div class="col-md-5 fruit-card">
-    <div class="product-details-wrapper" >
-      <%= image_tag(@product.display_url, class: 'show-img') %>
-      <div class="description-wrapper">
-        <p><%= @product.description  %></p>
-      </div>
+<% if logged_in  %>
+  <div class="row header-row">
+    <div class="col-md-3">
+        <h1 class='main-title'><%= @product.name.capitalize  %></h1>
+    </div>
+    <div class="home-link col-md-3 col-md-offset-6">
+      <%=link_to 'Home', root_path, class: 'main-title'  %> | <%= link_to 'Logout', session_path(1), method: :delete, class: 'main-title' %>
     </div>
   </div>
-  <div class="col-md-6 purchase-form-wrapper">
-        <%= render(:partial => 'form', :locals => { :product => @product, :fields => @fields }) %>
-  </div>
-<div>
+  <div class="row checkout-content">
+    <div class="col-md-5 fruit-card">
+      <div class="product-details-wrapper" >
+        <%= image_tag(@product.display_url, class: 'show-img') %>
+        <div class="description-wrapper">
+          <p><%= @product.description  %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 purchase-form-wrapper">
+          <%= render(:partial => 'form', :locals => { :product => @product, :fields => @fields }) %>
+    </div>
+  <div>
+<% end %>
